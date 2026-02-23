@@ -1,0 +1,57 @@
+
+> smartmumbaisolution@0.1.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\Neeraj\pnpm-lock.yaml as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\Neeraj\Desktop\smartsolution2\smartmumbaisolutions\pnpm-lock.yaml
+
+▲ Next.js 16.1.1 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 11.9s
+  Running TypeScript ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/25) ...
+  Generating static pages using 7 workers (6/25) 
+  Generating static pages using 7 workers (12/25) 
+  Generating static pages using 7 workers (18/25) 
+✓ Generating static pages using 7 workers (25/25) in 2.2s
+  Finalizing page optimization ...
+
+Route (app)                      Revalidate  Expire
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /api/applications/insurance
+├ ƒ /api/applications/loan
+├ ƒ /api/gallery/debug
+├ ƒ /api/gallery/events
+├ ƒ /api/gallery/events/[id]
+├ ƒ /api/loan-products
+├ ○ /calculator
+├ ○ /contact
+├ ○ /debug-gallery
+├ ○ /gallery
+├ ƒ /gallery/[eventId]
+├ ○ /gallery/view-all
+├ ● /insurance/[slug]
+│ ├ /insurance/health-insurance
+│ ├ /insurance/term-life
+│ ├ /insurance/car-insurance
+│ └ [+3 more paths]
+├ ● /loan/[slug]                         5m      1y
+│ ├ /loan/personal-loan                  5m      1y
+│ ├ /loan/business-loan                  5m      1y
+│ ├ /loan/home-loan                      5m      1y
+│ └ [+3 more paths]
+└ ○ /test-gallery
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

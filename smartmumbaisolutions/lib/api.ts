@@ -302,7 +302,7 @@ export async function getLoanProducts(slug?: string): Promise<LoanProductsRespon
         headers: {
           'Content-Type': 'application/json',
         },
-        cache: 'no-store', // Don't use browser cache, we have our own
+        next: { revalidate: 300 }, // Revalidate every 5 minutes (matches CACHE_TTL)
       });
 
       const data = await response.json();
