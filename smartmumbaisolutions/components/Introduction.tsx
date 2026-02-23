@@ -2,11 +2,12 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function Introduction() {
     return (
-        <section className="relative py-12 md:py-24 bg-transparent overflow-hidden">
-            <div className="w-full md:w-[90%] md:max-w-[1200px] mx-auto px-4 md:px-0">
+        <section className="relative py-24 bg-gray-50 overflow-hidden">
+            <div className="container mx-auto px-6 max-w-7xl">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
                     {/* Text Content */}
@@ -18,19 +19,19 @@ export default function Introduction() {
                         className="relative z-10"
                     >
                         <div className="flex items-center gap-4 mb-6">
-                            <span className="h-[2px] w-12 bg-orange-500"></span>
-                            <span className="text-orange-600 font-bold uppercase tracking-widest text-sm">
+                            <span className="h-[2px] w-12 bg-blue-600"></span>
+                            <span className="text-blue-600 font-bold uppercase tracking-widest text-sm">
                                 About Smart Solutions
                             </span>
                         </div>
 
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-                            We act as a trusted bridge between <span className="text-blue-700">customers & financial partners.</span>
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
+                            Your trusted bridge to <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">financial freedom.</span>
                         </h2>
 
-                        <div className="space-y-6 text-lg text-gray-600 leading-relaxed mb-10">
+                        <div className="space-y-6 text-lg text-slate-600 leading-relaxed mb-10">
                             <p>
-                                <span className="font-semibold text-gray-900">Smart Solutions</span>, incorporated on 1st July 2022, is a technology-driven financial services company committed to simplifying access to loans and credit solutions for individuals, professionals, and businesses across India.
+                                <span className="font-semibold text-slate-900">Smart Solutions</span> is a technology-driven financial services company committed to simplifying access to loans and credit solutions for individuals, professionals, and businesses across India.
                             </p>
                             <p>
                                 Since inception, we have focused on building a reliable, transparent, and efficient lending ecosystem powered by technology and deep banking expertise.
@@ -38,57 +39,25 @@ export default function Introduction() {
                         </div>
 
                         <Link href="/about">
-                            <button className="bg-[#0F3866] hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-sm transition-colors duration-300 shadow-lg">
-                                Read More
+                            <button className="bg-slate-900 text-white hover:bg-slate-800 font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-lg shadow-slate-200 flex items-center gap-2 group">
+                                Read More <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                             </button>
                         </Link>
                     </motion.div>
 
                     {/* Right Side: Animated Images */}
                     <div className="relative w-full hidden lg:block h-[500px]">
-                        {/* Image 1 - Main Background (Top Right) */}
                         <motion.div
-                            initial={{ opacity: 0, x: 20, y: -20 }}
-                            whileInView={{ opacity: 1, x: 0, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="absolute top-0 right-0 w-4/5 h-80 rounded-3xl shadow-2xl overflow-hidden z-10"
-                        >
-                            <img
-                                src="/intro/office-meeting.png"
-                                alt="Business Meeting"
-                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                            />
-                        </motion.div>
-
-                        {/* Image 2 - Overlapping (Bottom Left) */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -20, y: 20 }}
-                            whileInView={{ opacity: 1, x: 0, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="absolute top-40 left-0 w-3/5 h-64 rounded-3xl shadow-2xl overflow-hidden z-20 border-[6px] border-white"
-                        >
-                            <img
-                                src="/intro/growth-investment.png"
-                                alt="Growth and Investment"
-                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                            />
-                        </motion.div>
-
-                        {/* Image 3 - Small Detail (Bottom Center/Right) */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
+                            initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.4 }}
-                            className="absolute bottom-0 right-12 w-2/5 h-48 rounded-3xl shadow-2xl overflow-hidden z-30 border-[6px] border-white"
+                            transition={{ duration: 0.8 }}
+                            className="absolute top-0 right-0 w-full h-full rounded-3xl overflow-hidden z-10 border border-slate-100 bg-slate-50 shadow-2xl shadow-slate-200"
                         >
-                            <img
-                                src="/intro/loan-documents.png"
-                                alt="Approved Loan Documents"
-                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                            />
+                            {/* Placeholder or existing image with light mode styling */}
+                            <div className="w-full h-full flex items-center justify-center bg-white text-slate-400 font-bold text-2xl">
+                                About Us Image
+                            </div>
                         </motion.div>
                     </div>
                 </div>

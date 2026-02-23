@@ -1,451 +1,159 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ExpertModal from "./ExpertModal";
-import {
-    ShieldCheck,
-    ChevronDown,
-    HandCoins,
-    Briefcase,
-    Home,
-    Building2,
-    GraduationCap,
-    Car,
-    HeartPulse,
-    Shield,
-    Bike,
-    FileText,
-    Menu,
-    X
-} from "lucide-react";
+import NavbarLogo from "./NavbarLogo";
+import TalkToExpertButton from "./TalkToExpertButton";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 export default function Navbar() {
     const [isExpertModalOpen, setIsExpertModalOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+    const [scrolled, setScrolled] = useState(false);
 
-    const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    };
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 20) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
         <>
-            <nav className="sticky top-0 z-50 w-full md:w-[90%] md:max-w-[1200px] md:mx-auto md:top-2.5 rounded-none md:rounded-xl flex items-center justify-between px-4 md:px-8 h-20 md:overflow-visible overflow-hidden bg-white/80 backdrop-blur-md shadow-md border-x-0 md:border border-gray-200 supports-[backdrop-filter]:bg-white/60">
-                {/* Logo Section */}
-                <Link href="/" onClick={scrollToTop} className="flex items-center h-full">
-                    <Image
-                        src="/logo1.png"
-                        alt="Smart Solutions Logo"
-                        width={160}
-                        height={160}
-                        className="object-contain h-14 md:h-16 w-auto"
-                    />
-                </Link>
+            <div className="fixed top-0 left-0 right-0 z-50 flex justify-center items-center gap-4 py-1 px-4 bg-white/95 backdrop-blur-sm border-b border-slate-100/80 transition-all duration-300">
+                <div className="w-full max-w-[1280px] flex items-center justify-between gap-4">
+                    {/* Logo - blur only on scroll */}
+                    <NavbarLogo scrolled={scrolled} />
 
-                {/* Navigation Links */}
-                <div className="hidden md:flex items-center gap-8 font-medium text-gray-600">
-                    <Link href="/" onClick={scrollToTop} className="hover:text-blue-900 transition-colors">
-                        Home
-                    </Link>
-                    <Link href="/about" className="hover:text-blue-900 transition-colors">
-                        About Us
-                    </Link>
-
-                    {/* Loans Dropdown */}
-                    <div className="group relative">
-                        <button className="flex items-center gap-1 hover:text-blue-900 transition-colors focus:outline-none py-2">
-                            Loans
-                            <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-200" />
-                        </button>
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 w-[700px] pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
-                            <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-4 grid grid-cols-3 gap-2 overflow-hidden transition-all duration-200">
-                                <Link href="/loan/personal-loan" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/PersonalLoan.png" alt="Personal Loan" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">Personal Loan</span>
-                                </Link>
-                                <Link href="/loan/business-loan" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/BusinessLoan.png" alt="Business Loan" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">Business Loan</span>
-                                </Link>
-                                <Link href="/loan/home-loan" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/HomeLoan (2).png" alt="Home Loan" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">Home Loan</span>
-                                </Link>
-                                <Link href="/loan/mortgage-loan" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/LAP (2).png" alt="Loan Against Property" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">Loan Against Property</span>
-                                </Link>
-                                <Link href="/loan/education-loan" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/EducationLoan.png" alt="Education Loan" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">Education Loan</span>
-                                </Link>
-                                <Link href="/loan/car-loan" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/CarLoan (2).png" alt="Car Loan" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">Car Loan</span>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Insurance Dropdown */}
-                    <div className="group relative">
-                        <button className="flex items-center gap-1 hover:text-blue-900 transition-colors focus:outline-none py-2">
-                            Insurance
-                            <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-200" />
-                        </button>
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 w-[700px] pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
-                            <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-4 grid grid-cols-3 gap-2 overflow-hidden transition-all duration-200">
-                                <Link href="/insurance/health-insurance" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/HealthInsurance.png" alt="Health Insurance" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">Health Insurance</span>
-                                </Link>
-                                <Link href="/insurance/term-life" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/terminsurance.png" alt="Term Life" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">Term Life</span>
-                                </Link>
-                                <Link href="/insurance/car-insurance" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/CarInsurance.png" alt="Car Insurance" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">Car Insurance</span>
-                                </Link>
-                                <Link href="/insurance/bike-insurance" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/BikeInsurance.png" alt="Bike Insurance" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">Bike Insurance</span>
-                                </Link>
-                                <Link href="/insurance/loan-protector" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/LoanProtector.png" alt="Loan Protector" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">Loan Protector</span>
-                                </Link>
-                                <Link href="/insurance/emi-protector" className="flex items-center gap-3 p-3 hover:bg-blue-50 rounded-lg transition-colors">
-                                    <div className="w-10 h-10 shrink-0">
-                                        <Image src="/card-logos/EMI Protector.png" alt="EMI Protector" width={40} height={40} className="object-contain" />
-                                    </div>
-                                    <span className="text-gray-700 font-medium text-sm">EMI Protector</span>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-
-                    <Link href="/gallery" className="hover:text-blue-900 transition-colors">
-                        Gallery
-                    </Link>
-                    <Link href="/contact" className="hover:text-blue-900 transition-colors">
-                        Contact
-                    </Link>
-                    <Link href="/calculator" className="hover:text-blue-900 transition-colors">
-                        Calculator
-                    </Link>
-                </div>
-
-                {/* CTA Button - Desktop */}
-                <div className="hidden md:block">
-                    <button
-                        onClick={() => setIsExpertModalOpen(true)}
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-sm font-medium transition-all shadow-lg hover:shadow-xl text-sm transform hover:-translate-y-0.5 whitespace-nowrap"
+                    {/* Navbar - only as wide as links (narrower white bg on x-axis) */}
+                    <nav
+                        className={`flex-none w-fit flex items-center justify-center rounded-full transition-all duration-300 ${scrolled
+                            ? "bg-white/90 backdrop-blur-md shadow-lg shadow-orange-900/5 border border-orange-100/50 py-1.5 px-3"
+                            : "bg-transparent py-2 px-2"
+                            }`}
                     >
-                        Talk to Expert
-                    </button>
-                </div>
+                        <div className="hidden md:flex items-center gap-8 px-4 py-1.5 shrink-0">
+                            <Link href="/" className="text-base font-semibold text-slate-600 hover:text-orange-600 transition-colors">
+                                Home
+                            </Link>
 
-                {/* Hamburger Menu Button - Mobile */}
-                <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="md:hidden p-2 text-gray-700 hover:text-blue-900 transition-colors"
-                    aria-label="Toggle menu"
-                >
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </nav>
+                            {/* Loans Dropdown Trigger */}
+                            <div className="group relative">
+                                <button className="flex items-center gap-1 text-base font-semibold text-slate-600 hover:text-orange-600 transition-colors">
+                                    Loans <ChevronDown size={15} className="group-hover:rotate-180 transition-transform duration-300" />
+                                </button>
+                                {/* Dropdown Content */}
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 w-[500px]">
+                                    <div className="bg-white rounded-2xl p-4 shadow-xl border border-orange-100 ring-1 ring-black/5 grid grid-cols-2 gap-2">
+                                        {[
+                                            { name: "Personal Loan", href: "/loan/personal-loan" },
+                                            { name: "Business Loan", href: "/loan/business-loan" },
+                                            { name: "Home Loan", href: "/loan/home-loan" },
+                                            { name: "Loan Against Property", href: "/loan/mortgage-loan" },
+                                            { name: "Education Loan", href: "/loan/education-loan" },
+                                            { name: "Car Loan", href: "/loan/car-loan" }
+                                        ].map((item) => (
+                                            <Link key={item.href} href={item.href} className="flex items-center gap-3 p-3 rounded-xl hover:bg-orange-50 transition-colors">
+                                                <div className="w-8 h-8 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xs font-bold">
+                                                    {item.name[0]}
+                                                </div>
+                                                <span className="text-sm font-medium text-slate-700 group-hover:text-orange-700 transition-colors">{item.name}</span>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Insurance Dropdown Trigger */}
+                            <div className="group relative">
+                                <button className="flex items-center gap-1 text-base font-semibold text-slate-600 hover:text-orange-600 transition-colors">
+                                    Insurance <ChevronDown size={15} className="group-hover:rotate-180 transition-transform duration-300" />
+                                </button>
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 w-[500px]">
+                                    <div className="bg-white rounded-2xl p-4 shadow-xl border border-orange-100 ring-1 ring-black/5 grid grid-cols-2 gap-2">
+                                        {[
+                                            { name: "Health Insurance", href: "/insurance/health-insurance" },
+                                            { name: "Term Life", href: "/insurance/term-life" },
+                                            { name: "Car Insurance", href: "/insurance/car-insurance" },
+                                            { name: "Bike Insurance", href: "/insurance/bike-insurance" },
+                                            { name: "Loan Protector", href: "/insurance/loan-protector" },
+                                            { name: "EMI Protector", href: "/insurance/emi-protector" }
+                                        ].map((item) => (
+                                            <Link key={item.href} href={item.href} className="flex items-center gap-3 p-3 rounded-xl hover:bg-amber-50 transition-colors">
+                                                <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-xs font-bold">
+                                                    {item.name[0]}
+                                                </div>
+                                                <span className="text-sm font-medium text-slate-700 group-hover:text-amber-700 transition-colors">{item.name}</span>
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <Link href="/about" className="text-base font-semibold text-slate-600 hover:text-orange-600 transition-colors">
+                                About Us
+                            </Link>
+                        </div>
+                    </nav>
+
+                    {/* Talk to Expert + mobile menu - separate from navbar */}
+                    <div className="flex items-center shrink-0 gap-4">
+                        <TalkToExpertButton onClick={() => setIsExpertModalOpen(true)} />
+                        <button
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="md:hidden p-2 rounded-full bg-orange-50 text-orange-600 hover:bg-orange-100 transition-colors"
+                        >
+                            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                        </button>
+                    </div>
+                </div>
+            </div>
 
             {/* Mobile Menu Overlay */}
             {isMobileMenuOpen && (
-                <div
-                    className="fixed inset-0 bg-black/50 z-30 md:hidden"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                />
-            )}
+                <div className="fixed inset-0 z-40 bg-white pt-24 px-6 overflow-y-auto animate-in fade-in slide-in-from-top-10 duration-200">
+                    <div className="flex flex-col space-y-4">
+                        <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold text-slate-900 border-b border-orange-100 pb-4">Home</Link>
 
-            {/* Mobile Menu */}
-            <div
-                className={`fixed inset-0 top-20 z-40 bg-white/95 backdrop-blur-md md:hidden transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-                    }`}
-            >
-                <div className="flex flex-col h-full overflow-y-auto px-6 py-4">
-                    <Link
-                        href="/"
-                        onClick={() => {
-                            setIsMobileMenuOpen(false);
-                            scrollToTop();
-                        }}
-                        className="py-3 text-gray-700 font-medium hover:text-blue-900 transition-colors border-b border-gray-200"
-                    >
-                        Home
-                    </Link>
-                    <Link
-                        href="/about"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="py-3 text-gray-700 font-medium hover:text-blue-900 transition-colors border-b border-gray-200"
-                    >
-                        About Us
-                    </Link>
-
-                    {/* Loans Dropdown - Mobile */}
-                    <div className="border-b border-gray-200">
-                        <button
-                            onClick={() => setOpenDropdown(openDropdown === "loans" ? null : "loans")}
-                            className="w-full flex items-center justify-between py-3 text-gray-700 font-medium hover:text-blue-900 transition-colors"
-                        >
-                            Loans
-                            <ChevronDown
-                                size={16}
-                                className={`transition-transform ${openDropdown === "loans" ? "rotate-180" : ""}`}
-                            />
-                        </button>
-                        {openDropdown === "loans" && (
-                            <div className="pl-4 pb-2 space-y-2">
-                                <Link
-                                    href="/loan/personal-loan"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/PersonalLoan.png" alt="Personal Loan" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>Personal Loan</span>
-                                </Link>
-                                <Link
-                                    href="/loan/business-loan"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/BusinessLoan.png" alt="Business Loan" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>Business Loan</span>
-                                </Link>
-                                <Link
-                                    href="/loan/home-loan"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/HomeLoan (2).png" alt="Home Loan" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>Home Loan</span>
-                                </Link>
-                                <Link
-                                    href="/loan/mortgage-loan"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/LAP (2).png" alt="Loan Against Property" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>Loan Against Property</span>
-                                </Link>
-                                <Link
-                                    href="/loan/education-loan"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/EducationLoan.png" alt="Education Loan" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>Education Loan</span>
-                                </Link>
-                                <Link
-                                    href="/loan/car-loan"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/CarLoan (2).png" alt="Car Loan" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>Car Loan</span>
-                                </Link>
+                        <div className="space-y-4 pb-4 border-b border-orange-100">
+                            <h3 className="text-sm font-bold text-orange-600 uppercase tracking-wider">Loans</h3>
+                            <div className="grid grid-cols-1 gap-3 pl-2">
+                                <Link href="/loan/personal-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors">Personal Loan</Link>
+                                <Link href="/loan/home-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors">Home Loan</Link>
+                                <Link href="/loan/business-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors">Business Loan</Link>
                             </div>
-                        )}
-                    </div>
+                        </div>
 
-                    {/* Insurance Dropdown - Mobile */}
-                    <div className="border-b border-gray-200">
-                        <button
-                            onClick={() => setOpenDropdown(openDropdown === "insurance" ? null : "insurance")}
-                            className="w-full flex items-center justify-between py-3 text-gray-700 font-medium hover:text-blue-900 transition-colors"
-                        >
-                            Insurance
-                            <ChevronDown
-                                size={16}
-                                className={`transition-transform ${openDropdown === "insurance" ? "rotate-180" : ""}`}
-                            />
-                        </button>
-                        {openDropdown === "insurance" && (
-                            <div className="pl-4 pb-2 space-y-2">
-                                <Link
-                                    href="/insurance/health-insurance"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/HealthInsurance.png" alt="Health Insurance" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>Health Insurance</span>
-                                </Link>
-                                <Link
-                                    href="/insurance/term-life"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/terminsurance.png" alt="Term Life" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>Term Life</span>
-                                </Link>
-                                <Link
-                                    href="/insurance/car-insurance"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/CarInsurance.png" alt="Car Insurance" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>Car Insurance</span>
-                                </Link>
-                                <Link
-                                    href="/insurance/bike-insurance"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/BikeInsurance.png" alt="Bike Insurance" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>Bike Insurance</span>
-                                </Link>
-                                <Link
-                                    href="/insurance/loan-protector"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/LoanProtector.png" alt="Loan Protector" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>Loan Protector</span>
-                                </Link>
-                                <Link
-                                    href="/insurance/emi-protector"
-                                    onClick={() => {
-                                        setIsMobileMenuOpen(false);
-                                        setOpenDropdown(null);
-                                    }}
-                                    className="flex items-center gap-3 py-2 text-gray-600 hover:text-blue-900 transition-colors"
-                                >
-                                    <div className="w-8 h-8 shrink-0">
-                                        <Image src="/card-logos/EMI Protector.png" alt="EMI Protector" width={32} height={32} className="object-contain" />
-                                    </div>
-                                    <span>EMI Protector</span>
-                                </Link>
+                        <div className="space-y-4 pb-4 border-b border-orange-100">
+                            <h3 className="text-sm font-bold text-amber-600 uppercase tracking-wider">Insurance</h3>
+                            <div className="grid grid-cols-1 gap-3 pl-2">
+                                <Link href="/insurance/health-insurance" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-amber-600 transition-colors">Health Insurance</Link>
+                                <Link href="/insurance/term-life" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-amber-600 transition-colors">Term Life</Link>
                             </div>
-                        )}
+                        </div>
+
+                        <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold text-slate-900 border-b border-orange-100 pb-4">About Us</Link>
+
+                        <button
+                            onClick={() => {
+                                setIsExpertModalOpen(true);
+                                setIsMobileMenuOpen(false);
+                            }}
+                            className="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-orange-200 mt-4 hover:shadow-orange-300 transition-shadow"
+                        >
+                            Talk to Expert
+                        </button>
                     </div>
-
-                    <Link
-                        href="/gallery"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="py-3 text-gray-700 font-medium hover:text-blue-900 transition-colors border-b border-gray-200"
-                    >
-                        Gallery
-                    </Link>
-                    <Link
-                        href="/contact"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="py-3 text-gray-700 font-medium hover:text-blue-900 transition-colors border-b border-gray-200"
-                    >
-                        Contact
-                    </Link>
-                    <Link
-                        href="/calculator"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="py-3 text-gray-700 font-medium hover:text-blue-900 transition-colors border-b border-gray-200"
-                    >
-                        Calculator
-                    </Link>
-
-                    {/* Talk to Expert Button - Mobile */}
-                    <button
-                        onClick={() => {
-                            setIsExpertModalOpen(true);
-                            setIsMobileMenuOpen(false);
-                        }}
-                        className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-sm font-medium transition-all shadow-lg text-sm"
-                    >
-                        Talk to Expert
-                    </button>
                 </div>
-            </div>
+            )}
 
             <ExpertModal isOpen={isExpertModalOpen} onClose={() => setIsExpertModalOpen(false)} />
         </>
     );
 }
-
-
-
