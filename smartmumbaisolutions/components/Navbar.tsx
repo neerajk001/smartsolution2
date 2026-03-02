@@ -33,9 +33,9 @@ export default function Navbar() {
                     {/* Logo - blur only on scroll */}
                     <NavbarLogo scrolled={scrolled} />
 
-                    {/* Navbar - only as wide as links (narrower white bg on x-axis) */}
+                    {/* Navbar - only as wide as links; hidden on mobile (menu is in overlay) */}
                     <nav
-                        className={`flex-none w-fit flex items-center justify-center rounded-full transition-all duration-300 ${scrolled
+                        className={`hidden md:flex flex-none w-fit items-center justify-center rounded-full transition-all duration-300 ${scrolled
                             ? "bg-white/90 backdrop-blur-md shadow-lg shadow-orange-900/5 border border-orange-100/50 py-1.5 px-3"
                             : "bg-transparent py-2 px-2"
                             }`}
