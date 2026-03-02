@@ -65,11 +65,11 @@ export default function ExpertModal({ isOpen, onClose }: ExpertModalProps) {
 
                                 {/* Call Action */}
                                 <a
-                                    href="tel:+919665248445"
+                                    href="tel:+919870802207"
                                     className="w-full flex items-center justify-center gap-3 bg-black hover:bg-gray-800 text-white py-4 rounded-sm font-semibold shadow-lg transition-all duration-300 hover:-translate-y-1 group"
                                 >
                                     <Phone size={20} className="group-hover:animate-pulse" />
-                                    <span>Call +91 96652 48445</span>
+                                    <span>Call +91 98708 02207</span>
                                 </a>
 
                                 {/* Footer Info */}

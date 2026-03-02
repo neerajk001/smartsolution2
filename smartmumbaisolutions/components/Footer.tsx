@@ -21,11 +21,11 @@ export default function Footer() {
                     <div className="space-y-6">
                         <Link href="/" className="inline-block">
                             <Image
-                                src="/company-logo.png"
+                                src="/footer.png"
                                 alt="Smart Solutions"
-                                width={140}
-                                height={140}
-                                className="object-contain"
+                                width={280}
+                                height={120}
+                                className="object-contain w-auto h-24 md:h-28"
                             />
                         </Link>
                         <p className="text-slate-400 leading-relaxed max-w-sm">
@@ -120,7 +120,7 @@ export default function Footer() {
                                 </div>
                                 <div>
                                     <div className="text-xs font-semibold text-slate-500 uppercase mb-1">Call Us</div>
-                                    <a href="tel:+919588833303" className="text-white hover:text-cyan-400 transition-colors">+91 95888 33303</a>
+                                    <a href="tel:+919870802207" className="text-white hover:text-cyan-400 transition-colors">+91 98708 02207</a>
                                 </div>
                             </li>
                             <li className="flex items-start gap-4 text-slate-400 group">
@@ -129,7 +129,7 @@ export default function Footer() {
                                 </div>
                                 <div>
                                     <div className="text-xs font-semibold text-slate-500 uppercase mb-1">Visit Us</div>
-                                    <span className="text-white">B-203, 204, 205, Lawrence Trade Center, Manikpur Road, Vasai West</span>
+                                    <span className="text-white">Hindrajesthan Building, Office No. 236, 238, 240, 2nd Floor, Dadar East, Near Kailas Lasiwala, Opp. Chetan Bar, Dadar East, Mumbai 400014</span>
                                 </div>
                             </li>
                         </ul>

@@ -97,8 +97,8 @@ export default function ContactSection() {
                                     icon={Phone}
                                     title="Call Us"
                                     content={
-                                        <a href="tel:+919588833303" className="hover:text-blue-600 transition-colors">
-                                            +91 95888 33303
+                                        <a href="tel:+919870802207" className="hover:text-blue-600 transition-colors">
+                                            +91 98708 02207
                                         </a>
                                     }
                                 />
@@ -120,7 +120,7 @@ export default function ContactSection() {
                                 <InfoItem
                                     icon={MapPin}
                                     title="Visit Us"
-                                    content="B-203, 204, 205, Lawrence Trade Center, Manikpur Road, Near Madhuram Hotel, Vasai West 401202"
+                                    content="Hindrajesthan Building, Office No. 236, 238, 240, 2nd Floor, Dadar East, Near Kailas Lasiwala, Opp. Chetan Bar, Dadar East, Mumbai 400014"
                                 />
                             </div>
                         </motion.div>

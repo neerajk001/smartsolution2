@@ -11,6 +11,8 @@ export default function Navbar() {
     const [isExpertModalOpen, setIsExpertModalOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [mobileLoansOpen, setMobileLoansOpen] = useState(false);
+    const [mobileInsuranceOpen, setMobileInsuranceOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -121,21 +123,48 @@ export default function Navbar() {
                     <div className="flex flex-col space-y-4">
                         <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold text-slate-900 border-b border-orange-100 pb-4">Home</Link>
 
-                        <div className="space-y-4 pb-4 border-b border-orange-100">
-                            <h3 className="text-sm font-bold text-orange-600 uppercase tracking-wider">Loans</h3>
-                            <div className="grid grid-cols-1 gap-3 pl-2">
-                                <Link href="/loan/personal-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors">Personal Loan</Link>
-                                <Link href="/loan/home-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors">Home Loan</Link>
-                                <Link href="/loan/business-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors">Business Loan</Link>
-                            </div>
+                        {/* Loans - collapsible */}
+                        <div className="border-b border-orange-100 pb-4">
+                            <button
+                                type="button"
+                                onClick={() => setMobileLoansOpen(!mobileLoansOpen)}
+                                className="flex items-center justify-between w-full text-left text-sm font-bold text-orange-600 uppercase tracking-wider py-2"
+                            >
+                                Loans
+                                <ChevronDown size={18} className={`transition-transform duration-200 ${mobileLoansOpen ? "rotate-180" : ""}`} />
+                            </button>
+                            {mobileLoansOpen && (
+                                <div className="grid grid-cols-1 gap-3 pl-2 pt-1">
+                                    <Link href="/loan/personal-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors py-1">Personal Loan</Link>
+                                    <Link href="/loan/home-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors py-1">Home Loan</Link>
+                                    <Link href="/loan/business-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors py-1">Business Loan</Link>
+                                    <Link href="/loan/mortgage-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors py-1">Loan Against Property</Link>
+                                    <Link href="/loan/education-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors py-1">Education Loan</Link>
+                                    <Link href="/loan/car-loan" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-orange-600 transition-colors py-1">Car Loan</Link>
+                                </div>
+                            )}
                         </div>
 
-                        <div className="space-y-4 pb-4 border-b border-orange-100">
-                            <h3 className="text-sm font-bold text-amber-600 uppercase tracking-wider">Insurance</h3>
-                            <div className="grid grid-cols-1 gap-3 pl-2">
-                                <Link href="/insurance/health-insurance" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-amber-600 transition-colors">Health Insurance</Link>
-                                <Link href="/insurance/term-life" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-amber-600 transition-colors">Term Life</Link>
-                            </div>
+                        {/* Insurance - collapsible */}
+                        <div className="border-b border-orange-100 pb-4">
+                            <button
+                                type="button"
+                                onClick={() => setMobileInsuranceOpen(!mobileInsuranceOpen)}
+                                className="flex items-center justify-between w-full text-left text-sm font-bold text-amber-600 uppercase tracking-wider py-2"
+                            >
+                                Insurance
+                                <ChevronDown size={18} className={`transition-transform duration-200 ${mobileInsuranceOpen ? "rotate-180" : ""}`} />
+                            </button>
+                            {mobileInsuranceOpen && (
+                                <div className="grid grid-cols-1 gap-3 pl-2 pt-1">
+                                    <Link href="/insurance/health-insurance" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-amber-600 transition-colors py-1">Health Insurance</Link>
+                                    <Link href="/insurance/term-life" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-amber-600 transition-colors py-1">Term Life</Link>
+                                    <Link href="/insurance/car-insurance" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-amber-600 transition-colors py-1">Car Insurance</Link>
+                                    <Link href="/insurance/bike-insurance" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-amber-600 transition-colors py-1">Bike Insurance</Link>
+                                    <Link href="/insurance/loan-protector" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-amber-600 transition-colors py-1">Loan Protector</Link>
+                                    <Link href="/insurance/emi-protector" onClick={() => setIsMobileMenuOpen(false)} className="text-slate-600 hover:text-amber-600 transition-colors py-1">EMI Protector</Link>
+                                </div>
+                            )}
                         </div>
 
                         <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold text-slate-900 border-b border-orange-100 pb-4">About Us</Link>
