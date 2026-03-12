@@ -13,7 +13,7 @@ import Image from "next/image";
 
 export default function Footer() {
     return (
-        <footer className="bg-slate-900 pt-20 pb-10 border-t border-slate-800">
+        <footer className="bg-black pt-20 pb-10 border-t border-zinc-900">
             <div className="container mx-auto px-6 max-w-7xl">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
@@ -41,7 +41,7 @@ export default function Footer() {
                                 <Link
                                     key={idx}
                                     href={social.href}
-                                    className={`w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 transition-all hover:bg-white hover:scale-110 ${social.color}`}
+                                    className={`w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-slate-400 transition-all hover:bg-white hover:scale-110 ${social.color}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -106,7 +106,7 @@ export default function Footer() {
                         </h3>
                         <ul className="space-y-6">
                             <li className="flex items-start gap-4 text-slate-400 group">
-                                <div className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                                <div className="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center shrink-0 group-hover:bg-purple-500 group-hover:text-white transition-colors">
                                     <Mail size={20} />
                                 </div>
                                 <div>
@@ -115,7 +115,7 @@ export default function Footer() {
                                 </div>
                             </li>
                             <li className="flex items-start gap-4 text-slate-400 group">
-                                <div className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                                <div className="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center shrink-0 group-hover:bg-purple-500 group-hover:text-white transition-colors">
                                     <Phone size={20} />
                                 </div>
                                 <div>
@@ -124,7 +124,7 @@ export default function Footer() {
                                 </div>
                             </li>
                             <li className="flex items-start gap-4 text-slate-400 group">
-                                <div className="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center shrink-0 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                                <div className="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center shrink-0 group-hover:bg-purple-500 group-hover:text-white transition-colors">
                                     <MapPin size={20} />
                                 </div>
                                 <div>
@@ -136,7 +136,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="border-t border-zinc-900 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
                     <p className="text-slate-500 text-sm">
                         &copy; {new Date().getFullYear()} Smart Solutions. All rights reserved.
                     </p>
