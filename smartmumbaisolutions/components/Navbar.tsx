@@ -40,7 +40,7 @@ export default function Navbar() {
                             : "bg-transparent py-2 px-2"
                             }`}
                     >
-                        <div className="hidden md:flex items-center gap-8 px-4 py-1.5 shrink-0">
+                        <div className="hidden md:flex items-center gap-5 px-4 py-1.5 shrink-0">
                             <Link href="/" className="text-base font-semibold text-slate-600 hover:text-orange-600 transition-colors">
                                 Home
                             </Link>
@@ -97,6 +97,10 @@ export default function Navbar() {
                                     </div>
                                 </div>
                             </div>
+
+                            <Link href="/calculator" className="text-base font-semibold text-slate-600 hover:text-orange-600 transition-colors">
+                                Calculator
+                            </Link>
 
                             <Link href="/about" className="text-base font-semibold text-slate-600 hover:text-orange-600 transition-colors">
                                 About Us
@@ -166,6 +170,8 @@ export default function Navbar() {
                                 </div>
                             )}
                         </div>
+
+                        <Link href="/calculator" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold text-slate-900 border-b border-orange-100 pb-4">Calculator</Link>
 
                         <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="text-xl font-bold text-slate-900 border-b border-orange-100 pb-4">About Us</Link>
 

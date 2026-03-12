@@ -220,7 +220,7 @@ const DetailedCalculatorContent = () => {
     const pageHeight = doc.internal.pageSize.getHeight();
 
     const logo = new Image();
-    logo.src = '/logo1.png';
+    logo.src = '/company-logo.png';
 
     const drawSummary = (startY: number) => {
       // Enhanced Summary Box
@@ -370,7 +370,7 @@ const DetailedCalculatorContent = () => {
     };
 
     logo.onload = () => {
-      doc.addImage(logo, 'PNG', 14, 10, 35, 13);
+      doc.addImage(logo, 'PNG', 14, 8, 18, 18);
 
       doc.setFontSize(19);
       doc.setTextColor(30, 58, 138);
@@ -384,9 +384,9 @@ const DetailedCalculatorContent = () => {
 
       doc.setDrawColor(200, 200, 200);
       doc.setLineWidth(0.3);
-      doc.line(14, 27, 196, 27);
+      doc.line(14, 29, 196, 29);
 
-      generateTable(32);
+      generateTable(34);
     };
 
     logo.onerror = () => {
@@ -480,7 +480,7 @@ const DetailedCalculatorContent = () => {
     const pageHeight = doc.internal.pageSize.getHeight();
 
     const logo = new Image();
-    logo.src = '/logo1.png';
+    logo.src = '/company-logo.png';
 
     const generateSchedule = (startY: number) => {
       // Loan Summary Box
@@ -639,7 +639,7 @@ const DetailedCalculatorContent = () => {
     };
 
     logo.onload = () => {
-      doc.addImage(logo, 'PNG', 14, 10, 35, 13);
+      doc.addImage(logo, 'PNG', 14, 8, 18, 18);
 
       doc.setFontSize(18);
       doc.setTextColor(30, 58, 138);
@@ -653,9 +653,9 @@ const DetailedCalculatorContent = () => {
 
       doc.setDrawColor(200, 200, 200);
       doc.setLineWidth(0.3);
-      doc.line(14, 27, 196, 27);
+      doc.line(14, 29, 196, 29);
 
-      generateSchedule(32);
+      generateSchedule(34);
       doc.save(`Part-Payment-Analysis-${new Date().toISOString().split('T')[0]}.pdf`);
     };
 
@@ -860,53 +860,32 @@ const DetailedCalculatorContent = () => {
   const eligibilityTenureLabel = eligibilityTenureYears === 1 ? 'year' : 'years';
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white font-sans">
+    <main className="min-h-screen bg-[#f5f7fa] font-sans">
       <Navbar />
 
-      <div className="w-[90%] max-w-[1200px] mx-auto py-12">
+
+      <div className="w-[90%] max-w-[1200px] mx-auto pt-28 pb-10">
         {/* Tabs */}
-        <div className="flex justify-center mb-12">
-          <div className="bg-white p-1 rounded-xl shadow-sm border border-gray-200 inline-flex overflow-x-auto max-w-full">
-            <button
-              onClick={() => setActiveTab('emi')}
-              className={`flex items-center gap-2 px-6 py-6 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'emi'
-                ? 'bg-blue-900 text-white shadow-md'
-                : 'text-gray-500 hover:text-blue-900 hover:bg-blue-50'
-                }`}
-            >
-              <CalculatorIcon className="w-4 h-4" />
-              EMI Calculator
-            </button>
-            <button
-              onClick={() => setActiveTab('eligibility')}
-              className={`flex items-center gap-2 px-6 py-6 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'eligibility'
-                ? 'bg-blue-900 text-white shadow-md'
-                : 'text-gray-500 hover:text-blue-900 hover:bg-blue-50'
-                }`}
-            >
-              <CheckCircle2 className="w-4 h-4" />
-              Check Eligibility
-            </button>
-            <button
-              onClick={() => setActiveTab('balance')}
-              className={`flex items-center gap-2 px-6 py-6 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'balance'
-                ? 'bg-blue-900 text-white shadow-md'
-                : 'text-gray-500 hover:text-blue-900 hover:bg-blue-50'
-                }`}
-            >
-              <RefreshCw className="w-4 h-4" />
-              Balance Transfer
-            </button>
-            <button
-              onClick={() => setActiveTab('part-payment')}
-              className={`flex items-center gap-2 px-6 py-6 rounded-lg text-sm font-bold transition-all whitespace-nowrap ${activeTab === 'part-payment'
-                ? 'bg-blue-900 text-white shadow-md'
-                : 'text-gray-500 hover:text-blue-900 hover:bg-blue-50'
-                }`}
-            >
-              <PercentIcon className="w-4 h-4" />
-              Part Payment
-            </button>
+        <div className="flex justify-center mb-10 pt-4">
+          <div className="bg-white/90 backdrop-blur-md p-1.5 rounded-2xl shadow-xl border border-gray-100 inline-flex overflow-x-auto max-w-full gap-1">
+            {([
+              { id: 'emi', label: 'EMI Calculator', icon: <CalculatorIcon className="w-4 h-4" /> },
+              { id: 'eligibility', label: 'Check Eligibility', icon: <CheckCircle2 className="w-4 h-4" /> },
+              { id: 'balance', label: 'Balance Transfer', icon: <RefreshCw className="w-4 h-4" /> },
+              { id: 'part-payment', label: 'Part Payment', icon: <PercentIcon className="w-4 h-4" /> },
+            ] as const).map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold transition-all whitespace-nowrap ${activeTab === tab.id
+                  ? 'bg-gradient-to-r from-blue-900 to-indigo-800 text-white shadow-lg shadow-blue-900/20'
+                  : 'text-gray-500 hover:text-blue-900 hover:bg-blue-50/80'
+                  }`}
+              >
+                {tab.icon}
+                {tab.label}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -915,7 +894,7 @@ const DetailedCalculatorContent = () => {
           <div className="grid grid-cols-12 gap-4 md:gap-6">
 
             {/* Main Calculator Input - Large Card */}
-            <div className="col-span-12 lg:col-span-7 bg-blue-50/30 border border-blue-100 rounded-3xl p-6 md:p-8 shadow-sm">
+            <div className="col-span-12 lg:col-span-7 bg-white border border-gray-100 rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm">
                   <CalculatorIcon className="w-6 h-6 text-orange-600" />
@@ -1004,32 +983,34 @@ const DetailedCalculatorContent = () => {
             {/* Right Column Wrapper */}
             <div className="col-span-12 lg:col-span-5 flex flex-col gap-4 md:gap-6">
               {/* EMI Result - Featured Card */}
-              <div className="bg-blue-900 border border-blue-900 rounded-3xl p-5 md:p-6 text-white relative overflow-hidden h-fit">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              <div className="bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-900 rounded-3xl p-5 md:p-6 text-white relative overflow-hidden h-fit shadow-xl shadow-blue-900/25">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-0 left-0 w-40 h-40 bg-indigo-400/10 rounded-full blur-2xl" />
 
                 <div className="relative">
-                  <div className="flex items-center gap-2 text-blue-200 text-xs font-bold uppercase tracking-wider mb-1">
+                  <div className="flex items-center gap-2 text-orange-300 text-xs font-bold uppercase tracking-wider mb-1">
                     <Sparkles className="w-3 h-3" />
                     MONTHLY EMI
                   </div>
-                  <div className="text-3xl md:text-4xl font-bold mb-3">
+                  <div className="text-4xl md:text-5xl font-extrabold mb-1 tracking-tight">
                     ₹{formatCurrency(emi)}
                   </div>
+                  <p className="text-blue-300 text-xs mb-4">Estimated monthly repayment</p>
 
-                  <div className="grid grid-cols-2 gap-3 mb-3">
-                    <div className="bg-white/10 rounded-xl p-2.5">
-                      <div className="text-blue-200 text-[10px] uppercase font-bold mb-0.5">Total Interest</div>
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-3 border border-white/10">
+                      <div className="text-blue-300 text-[10px] uppercase font-bold mb-1">Total Interest</div>
                       <div className="text-base font-bold">₹{formatCurrency(totalInterest)}</div>
                     </div>
-                    <div className="bg-white/10 rounded-xl p-2.5">
-                      <div className="text-blue-200 text-[10px] uppercase font-bold mb-0.5">Total Payment</div>
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-3 border border-white/10">
+                      <div className="text-blue-300 text-[10px] uppercase font-bold mb-1">Total Payment</div>
                       <div className="text-base font-bold">₹{formatCurrency(totalPayment)}</div>
                     </div>
                   </div>
 
                   <Link
                     href="/apply"
-                    className="flex items-center justify-center gap-2 w-full bg-orange-600 text-white py-2.5 rounded-xl font-bold hover:bg-orange-700 transition-colors shadow-lg text-sm"
+                    className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 rounded-2xl font-bold hover:from-orange-600 hover:to-orange-700 transition-all shadow-lg shadow-orange-900/30 text-sm"
                   >
                     Apply for this Loan
                     <ArrowRight className="w-4 h-4" />
@@ -1038,19 +1019,20 @@ const DetailedCalculatorContent = () => {
               </div>
 
               {/* Eligibility Check CTA */}
-              <div className="flex-1 bg-blue-900 border border-blue-900 rounded-3xl p-5 md:p-6 text-white relative overflow-hidden min-h-[200px] flex flex-col justify-center">
-                <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl" />
+              <div className="flex-1 bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl p-5 md:p-6 text-white relative overflow-hidden min-h-[160px] flex flex-col justify-center shadow-lg shadow-orange-500/20">
+                <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+                <div className="absolute top-0 left-0 w-24 h-24 bg-white/5 rounded-full blur-xl" />
                 <div className="relative">
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                    <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
                       <Wallet className="w-5 h-5 text-white" />
                     </div>
                     <h3 className="text-lg font-bold">Check Eligibility</h3>
                   </div>
-                  <p className="text-blue-200 text-sm mb-4">Find out how much loan you can get based on your income.</p>
+                  <p className="text-orange-100 text-sm mb-4">Find out how much loan you can get based on your income.</p>
                   <button
                     onClick={() => setActiveTab('eligibility')}
-                    className="inline-flex items-center gap-2 text-white font-semibold hover:text-orange-200 transition-colors text-sm"
+                    className="inline-flex items-center gap-2 bg-white text-orange-600 px-4 py-2 rounded-xl font-bold hover:bg-orange-50 transition-colors text-sm shadow-sm"
                   >
                     Check Now <ArrowRight className="w-4 h-4" />
                   </button>
@@ -1059,7 +1041,7 @@ const DetailedCalculatorContent = () => {
             </div>
 
             {/* Donut Chart Card */}
-            <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-orange-50/30 border border-orange-100 rounded-3xl p-6 shadow-sm">
+            <div className="col-span-12 md:col-span-6 lg:col-span-4 bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow">
               <h3 className="font-bold text-blue-900 mb-4">Payment Breakdown</h3>
 
               <div className="h-48 relative">
@@ -1100,49 +1082,49 @@ const DetailedCalculatorContent = () => {
             </div>
 
             {/* Quick Stats Cards */}
-            <div className="col-span-6 md:col-span-3 lg:col-span-2 bg-blue-50/40 border border-blue-100 rounded-3xl p-5 flex flex-col justify-between">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mb-3 shadow-sm">
-                <PiggyBank className="w-5 h-5 text-blue-600" />
+            <div className="col-span-6 md:col-span-3 lg:col-span-2 bg-gradient-to-br from-blue-50 to-white border border-blue-100 rounded-3xl p-5 flex flex-col justify-between shadow-sm">
+              <div className="w-10 h-10 bg-blue-900 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+                <PiggyBank className="w-5 h-5 text-white" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-blue-900">₹{formatCurrency(loanAmount)}</div>
-                <div className="text-sm text-gray-600">Principal</div>
+                <div className="text-xl font-bold text-blue-900">₹{formatCurrency(loanAmount)}</div>
+                <div className="text-xs text-gray-500 font-medium mt-0.5">Principal</div>
               </div>
             </div>
 
-            <div className="col-span-6 md:col-span-3 lg:col-span-2 bg-orange-50/40 border border-orange-100 rounded-3xl p-5 flex flex-col justify-between">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mb-3 shadow-sm">
-                <TrendingUp className="w-5 h-5 text-orange-600" />
+            <div className="col-span-6 md:col-span-3 lg:col-span-2 bg-gradient-to-br from-orange-50 to-white border border-orange-100 rounded-3xl p-5 flex flex-col justify-between shadow-sm">
+              <div className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+                <TrendingUp className="w-5 h-5 text-white" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-blue-900">{interestRate}%</div>
-                <div className="text-sm text-gray-600">Interest Rate</div>
+                <div className="text-xl font-bold text-blue-900">{interestRate}%</div>
+                <div className="text-xs text-gray-500 font-medium mt-0.5">Interest Rate</div>
               </div>
             </div>
 
-            <div className="col-span-6 md:col-span-6 lg:col-span-2 bg-blue-50/40 border border-blue-100 rounded-3xl p-5 flex flex-col justify-between">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mb-3 shadow-sm">
-                <Clock className="w-5 h-5 text-blue-600" />
+            <div className="col-span-6 md:col-span-6 lg:col-span-2 bg-gradient-to-br from-indigo-50 to-white border border-indigo-100 rounded-3xl p-5 flex flex-col justify-between shadow-sm">
+              <div className="w-10 h-10 bg-indigo-700 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+                <Clock className="w-5 h-5 text-white" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-blue-900">{tenure} {tenureType === 'years' ? 'Yrs' : 'Mo'}</div>
-                <div className="text-sm text-gray-600">Tenure</div>
+                <div className="text-xl font-bold text-blue-900">{tenure} {tenureType === 'years' ? 'Yrs' : 'Mo'}</div>
+                <div className="text-xs text-gray-500 font-medium mt-0.5">Tenure</div>
               </div>
             </div>
 
-            <div className="col-span-6 md:col-span-6 lg:col-span-2 bg-orange-50/40 border border-orange-100 rounded-3xl p-5 flex flex-col justify-between">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center mb-3 shadow-sm">
-                <Target className="w-5 h-5 text-orange-600" />
+            <div className="col-span-6 md:col-span-6 lg:col-span-2 bg-gradient-to-br from-rose-50 to-white border border-rose-100 rounded-3xl p-5 flex flex-col justify-between shadow-sm">
+              <div className="w-10 h-10 bg-rose-500 rounded-xl flex items-center justify-center mb-3 shadow-sm">
+                <Target className="w-5 h-5 text-white" />
               </div>
               <div>
-                <div className="text-2xl font-bold text-blue-900">₹{formatCurrency(totalInterest)}</div>
-                <div className="text-sm text-gray-600">Total Interest</div>
+                <div className="text-xl font-bold text-blue-900">₹{formatCurrency(totalInterest)}</div>
+                <div className="text-xs text-gray-500 font-medium mt-0.5">Total Interest</div>
               </div>
             </div>
 
 
             {/* Amortization Schedule */}
-            <div className="col-span-12 bg-gray-50 border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm">
+            <div className="col-span-12 bg-white border border-gray-100 rounded-3xl p-6 md:p-8 shadow-sm">
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h3 className="text-xl font-bold text-blue-900">Repayment Schedule</h3>
@@ -1891,7 +1873,7 @@ const SliderInput = ({ label, value, setValue, min, max, step, prefix = '', suff
         step={step}
         value={value}
         onChange={(e) => setValue(Number(e.target.value))}
-        className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer accent-blue-600"
+        className="w-full h-2 bg-gray-200 rounded-full appearance-none cursor-pointer accent-orange-600"
       />
     </div>
   );
