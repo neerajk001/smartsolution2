@@ -36,56 +36,47 @@ const iconMap: Record<string, any> = {
 };
 
 const ProductCard = ({ product, index, category, onApplyClick }: { product: any, index: number, category: string, onApplyClick: () => void }) => {
-    const Icon = iconMap[product.slug] || Zap;
-
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.05, duration: 0.5 }}
-            className="group relative !bg-white rounded-[1.5rem] p-6 border border-slate-200 shadow-sm hover:border-orange-400 transition-all duration-300 hover:shadow-xl hover:shadow-orange-200/20 hover:-translate-y-1 overflow-hidden flex flex-col h-full"
+            className="group relative bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden p-5"
         >
-            <div className="relative z-10 flex flex-col h-full">
-                <div className="flex justify-between items-start mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-orange-50 text-orange-500 group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm border border-orange-100 group-hover:border-transparent group-hover:shadow-lg group-hover:shadow-orange-200">
-                        <Icon size={24} strokeWidth={1.5} />
-                    </div>
-                    {product.metric && (
-                        <span className="bg-orange-50 text-orange-700 text-[10px] font-bold px-3 py-1 rounded-full border border-orange-200 group-hover:bg-white group-hover:text-amber-600 group-hover:border-amber-200 transition-colors">
-                            {product.metric}
-                        </span>
-                    )}
+            {/* Metric badge — top left (fix: no extra ROI suffix) */}
+            {product.metric && (
+                <span className="absolute top-3 left-3 bg-orange-50 text-orange-500 text-[10px] font-bold px-2.5 py-1 rounded-full border border-orange-100 z-10">
+                    {product.metric}
+                </span>
+            )}
+
+            {/* Horizontal layout */}
+            <div className="flex items-center gap-4 mt-5">
+                {/* Product image with soft bubble background */}
+                <div className="shrink-0 w-14 h-14 flex items-center justify-center bg-orange-50 rounded-2xl p-2">
+                    <img
+                        src={product.image}
+                        alt={product.title}
+                        className="w-full h-full object-contain"
+                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                    />
                 </div>
 
-                <div className="mb-auto">
-                    <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-orange-700 transition-colors">
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                    <h3 className="text-base font-extrabold text-slate-900 mb-0.5 leading-tight">
                         {product.title}
                     </h3>
-                    <p className="text-slate-500 leading-relaxed font-medium text-sm">
-                        {product.detail}
-                    </p>
-                </div>
-
-                <div className="mt-5 pt-5 border-t border-slate-100 flex items-center justify-between gap-3">
+                    <p className="text-slate-400 text-sm mb-3">{product.detail}</p>
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             onApplyClick();
                         }}
-                        className="flex-1 bg-orange-50 hover:bg-orange-500 text-orange-700 hover:text-white text-sm font-bold py-2.5 px-4 rounded-xl transition-all duration-300 text-center"
+                        className="inline-flex items-center gap-1.5 bg-blue-900 hover:bg-blue-800 text-white text-xs font-bold px-4 py-2 rounded-full transition-all duration-200 shadow-sm"
                     >
-                        Apply Now
-                    </button>
-
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onApplyClick();
-                        }}
-                        className="w-11 h-11 rounded-xl bg-orange-100 text-orange-600 hover:bg-orange-600 hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-orange-200"
-                    >
-                        <ArrowRight size={20} className="-rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                        Apply <ArrowUpRight size={13} />
                     </button>
                 </div>
             </div>

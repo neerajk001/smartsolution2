@@ -138,7 +138,7 @@ export default function HeroSlider() {
                     </motion.div>
 
                     {/* Right Image Card */}
-                    <div className="relative">
+                    <div className="relative w-full">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={`img-${current}`}
@@ -146,7 +146,7 @@ export default function HeroSlider() {
                                 animate={{ opacity: 1, scale: 1, x: 0 }}
                                 exit={{ opacity: 0, scale: 1.05, x: -50 }}
                                 transition={{ duration: 0.6, ease: "circOut" }}
-                                className="relative z-10 aspect-[4/5] md:aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl shadow-orange-900/10 border-8 border-white"
+                                className="relative z-10 aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-orange-900/10 border-8 border-white"
                             >
                                 <img
                                     src={slide.image}

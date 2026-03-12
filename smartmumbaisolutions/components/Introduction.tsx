@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Introduction() {
     return (
@@ -54,10 +55,14 @@ export default function Introduction() {
                             transition={{ duration: 0.8 }}
                             className="absolute top-0 right-0 w-full h-full rounded-3xl overflow-hidden z-10 border border-slate-100 bg-slate-50 shadow-2xl shadow-slate-200"
                         >
-                            {/* Placeholder or existing image with light mode styling */}
-                            <div className="w-full h-full flex items-center justify-center bg-white text-slate-400 font-bold text-2xl">
-                                About Us Image
-                            </div>
+                            {/* About image */}
+                            <Image
+                                src="/about.png"
+                                alt="About Smart Solutions"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
                         </motion.div>
                     </div>
                 </div>
