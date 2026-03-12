@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import OurPlatforms from "@/components/OurPlatforms";
 import { motion } from "framer-motion";
 import { ShieldCheck, Users, Lock, FileText, BarChart3, Handshake, Award, Briefcase, TrendingUp, CheckCircle2, PhoneCall, Sparkles } from "lucide-react";
 import Image from "next/image";
@@ -64,7 +65,7 @@ export default function AboutPage() {
             <main className="space-y-24 pb-20 pt-32">
                 {/* HERO SECTION */}
                 <section className="relative w-full md:w-[90%] md:max-w-[1200px] mx-auto">
-                    <div className="relative overflow-hidden bg-white rounded-[2.5rem] shadow-2xl shadow-orange-900/5 p-10 md:p-20 md:min-h-[500px] flex flex-col justify-center text-center border border-orange-100">
+                    <div className="relative overflow-hidden bg-white rounded-[2.5rem] shadow-2xl shadow-orange-900/5 p-8 md:p-12 md:min-h-[280px] flex flex-col justify-center text-center border border-orange-100">
                         {/* Background Blobs */}
                         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-100/40 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 mix-blend-multiply"></div>
                         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-amber-100/40 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4 mix-blend-multiply"></div>
@@ -114,6 +115,9 @@ export default function AboutPage() {
                         </div>
                     </motion.div>
                 </section>
+
+                {/* OUR PRODUCTS & PLATFORMS */}
+                <OurPlatforms />
 
                 {/* OUR STORY */}
                 <section className="w-full md:w-[90%] md:max-w-[1200px] mx-auto px-6 md:px-0">
@@ -183,6 +187,7 @@ export default function AboutPage() {
                         </motion.div>
                     </div>
                 </section>
+
 
             </main>
             <Footer />

@@ -111,7 +111,7 @@ export default function Footer() {
                                 </div>
                                 <div>
                                     <div className="text-xs font-semibold text-slate-500 uppercase mb-1">Email Support</div>
-                                    <a href="mailto:info@smartsolutionsmumbai.com" className="text-white hover:text-cyan-400 transition-colors">info@smartsolutionsmumbai.com</a>
+                                    <a href="mailto:info@ssolutions.in" className="text-white hover:text-cyan-400 transition-colors">info@ssolutions.in</a>
                                 </div>
                             </li>
                             <li className="flex items-start gap-4 text-slate-400 group">

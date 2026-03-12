@@ -107,7 +107,7 @@ export default function ContactSection() {
                                     title="Email Us"
                                     content={
                                         <div className="flex flex-col">
-                                            <a href="mailto:info@smartsolutionsmumbai.com" className="hover:text-blue-600 transition-colors">info@smartsolutionsmumbai.com</a>
+                                            <a href="mailto:info@ssolutions.in" className="hover:text-blue-600 transition-colors">info@ssolutions.in</a>
 
                                         </div>
                                     }
