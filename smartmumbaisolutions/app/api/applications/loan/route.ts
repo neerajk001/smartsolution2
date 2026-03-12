@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Backend URL - where the actual Loan Sarathi backend is running
-const BACKEND_URL = process.env.BACKEND_API_URL || 'https://loansarathi.com/api';
+// Backend URL - where the actual Loan Baazaar backend is running
+const BACKEND_URL = process.env.BACKEND_API_URL || 'https://loanbaazaar.com/api';
 
 export async function POST(request: NextRequest) {
   try {

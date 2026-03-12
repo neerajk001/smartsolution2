@@ -3,11 +3,11 @@
  * 
  * Architecture:
  * - Frontend calls Next.js API routes at /api/* (same domain, no CORS issues)
- * - API routes proxy requests to Loan Sarathi backend
+ * - API routes proxy requests to Loan Baazaar backend
  * - API routes automatically add X-Application-Source header
  * 
  * Development: http://localhost:3001/api (Next.js API routes)
- * Production: http://localhost:3001/api (Next.js API routes) → https://loansarathi.com/api
+ * Production: http://localhost:3001/api (Next.js API routes) → https://loanbaazaar.com/api
  */
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ||
