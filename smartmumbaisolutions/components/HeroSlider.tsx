@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowUpRight, CheckCircle2, Star, Shield, Zap } from "lucide-react";
+import { ArrowRight, Shield, Percent, TrendingDown, Star, Zap } from "lucide-react";
 import ApplicationModal from "./forms/ApplicationModal";
 import Link from "next/link";
 import Image from "next/image";
@@ -15,37 +15,31 @@ export default function HeroSlider() {
     const slides = [
         {
             id: 1,
-            title: "Finance Your Future Today",
-            subtitle: "Approval in 24 Hours",
-            description: "From dream homes to business expansion, we provide the capital you need with zero hassle.",
-            image: "/Hero-images/hero (1).png",
+            tag: "Top Loan Mediator",
+            title: "Home Loans Made Simple.",
+            description: "Don't settle for the first offer. We compare 40+ leading banks to secure the lowest interest rates for your dream home.",
+            image: "/Hero-images/home_loan.png",
             stats: "8.35% Starting ROI",
-            tag: "Best Seller",
-            color: "bg-orange-500",
             productType: "home-loan",
             category: "Loan" as "Loan"
         },
         {
             id: 2,
-            title: "Grow Your Business Fast",
-            subtitle: "Collateral-Free Loans",
-            description: "Scale your operations with unsecured business loans up to ₹5 Cr. Minimal documentation required.",
-            image: "/Hero-images/hero (3).png",
-            stats: "₹5Cr Max Limit",
-            tag: "Trending",
-            color: "bg-amber-500",
+            tag: "Fast Approvals",
+            title: "Quick Business Capital.",
+            description: "Scale your operations instantly. We find you the best collateral-free business loans with zero hidden processing fees.",
+            image: "/Hero-images/business_loan.png",
+            stats: "Funded in 24h",
             productType: "business-loan",
             category: "Loan" as "Loan"
         },
         {
             id: 3,
-            title: "Secure Your Family's Future",
-            subtitle: "Comprehensive Insurance",
-            description: "Get the best health and term life insurance plans at affordable premiums.",
-            image: "/Hero-images/hero (2).png",
+            tag: "Comprehensive Protection",
+            title: "Secure Your Family.",
+            description: "Protect what matters most. We help you select the most reliable insurance policies at the most affordable premiums.",
+            image: "/Hero-images/insurance.png",
             stats: "100% Claim Support",
-            tag: "Essential",
-            color: "bg-yellow-500",
             productType: "health-insurance",
             category: "Insurance" as "Insurance"
         }
@@ -74,119 +68,122 @@ export default function HeroSlider() {
     };
 
     return (
-        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gray-50">
-            {/* Warm Abstract Background Shapes */}
-            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-orange-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 -z-10 mix-blend-multiply"></div>
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-amber-100/40 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4 -z-10 mix-blend-multiply"></div>
-            <div className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-yellow-50/60 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 -z-10"></div>
+        <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white text-slate-900 border-b border-slate-100/50">
+            {/* Extremely subtle, modern background glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50 via-white to-white opacity-80 pointer-events-none -z-10 blur-3xl"></div>
+            
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+            {/* Minimal Grid Background */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
 
-            <div className="container mx-auto px-6 max-w-7xl">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="container mx-auto px-6 max-w-[1280px]">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center">
 
                     {/* Left Content */}
-                    <motion.div
-                        key={`text-${current}`}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="space-y-8 z-10"
-                    >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-orange-100 shadow-sm text-sm font-semibold text-orange-600">
-                            <span className={`w-2 h-2 rounded-full animate-pulse ${slide.color}`}></span>
-                            {slide.tag}
-                        </div>
-
-                        <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] tracking-tight">
-                            {slide.title.split(' ').map((word, i) => (
-                                <span key={i} className={i === 1 ? "text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500" : ""}> {word}</span>
-                            ))}
-                        </h1>
-
-                        <p className="text-xl text-slate-600 leading-relaxed max-w-lg">
-                            {slide.description}
-                        </p>
-
-                        <div className="flex items-center gap-4">
-                            <button
-                                onClick={handleApply}
-                                className="bg-gradient-to-r from-orange-600 to-amber-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-orange-200 hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2 group border border-transparent"
-                            >
-                                Apply Now <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                            </button>
-                            <button className="px-8 py-4 rounded-full font-semibold text-slate-600 hover:bg-orange-50 hover:text-orange-700 transition-all border border-transparent hover:border-orange-200 flex items-center gap-2">
-                                Learn More
-                            </button>
-                        </div>
-
-                        <div className="flex items-center gap-8 pt-8 border-t border-orange-100/60">
-                            <div>
-                                <h4 className="text-3xl font-bold text-slate-900">{slide.stats}</h4>
-                                <p className="text-sm text-slate-500 font-medium uppercase tracking-wide">Key Benefit</p>
-                            </div>
-                            <div className="h-12 w-px bg-orange-200/50"></div>
-                            <div className="flex -space-x-3">
-                                {[1, 2, 3, 4].map(i => (
-                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-orange-100 flex items-center justify-center text-xs font-bold text-orange-600">
-                                        UA
-                                    </div>
-                                ))}
-                                <div className="w-10 h-10 rounded-full border-2 border-white bg-orange-500 flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-orange-200">
-                                    +2k
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    {/* Right Image Card */}
-                    <div className="relative w-full">
+                    <div className="relative z-10">
                         <AnimatePresence mode="wait">
                             <motion.div
-                                key={`img-${current}`}
-                                initial={{ opacity: 0, scale: 0.95, x: 50 }}
-                                animate={{ opacity: 1, scale: 1, x: 0 }}
-                                exit={{ opacity: 0, scale: 1.05, x: -50 }}
-                                transition={{ duration: 0.6, ease: "circOut" }}
-                                className="relative z-10 aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-orange-900/10 border-8 border-white"
+                                key={`text-${current}`}
+                                initial={{ opacity: 0, filter: "blur(10px)", y: 15 }}
+                                animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                                exit={{ opacity: 0, filter: "blur(10px)", y: -15 }}
+                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                className="space-y-8"
                             >
-                                <img
-                                    src={slide.image}
-                                    alt={slide.title}
-                                    className="w-full h-full object-cover"
-                                />
-
-                                {/* Floating Badge */}
-                                <div className="absolute top-8 right-8 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-orange-100 flex flex-col items-center gap-1">
-                                    <div className="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center mb-1">
-                                        <Zap size={20} fill="currentColor" />
-                                    </div>
-                                    <span className="text-xs font-bold text-slate-900">Fast</span>
-                                    <span className="text-[10px] text-slate-500 uppercase tracking-wider">Process</span>
+                                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 shadow-[0_1px_2px_rgba(0,0,0,0.02)] text-xs font-semibold text-blue-600">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                                    {slide.tag}
                                 </div>
 
-                                {/* Floating Trust Badge */}
-                                <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md text-slate-900 p-4 rounded-2xl shadow-lg border border-orange-100 flex items-center gap-3 pr-6">
-                                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-orange-200">
-                                        4.9
+                                <h1 className="text-5xl lg:text-[4rem] font-bold text-slate-900 leading-[1.05] tracking-tight">
+                                    {slide.title.split(' ').map((word, i, arr) => (
+                                        <span key={i} className={i === arr.length - 1 ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500" : ""}> {word}</span>
+                                    ))}
+                                </h1>
+
+                                <p className="text-[17px] text-slate-500 leading-[1.6] max-w-lg font-medium">
+                                    {slide.description}
+                                </p>
+
+                                <div className="flex flex-col sm:flex-row items-center gap-4 pt-2">
+                                    <button
+                                        onClick={handleApply}
+                                        className="w-full sm:w-auto h-12 px-7 rounded-full bg-slate-900 text-white font-medium text-[15px] hover:bg-slate-800 transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)] active:scale-95 group"
+                                    >
+                                        Check Your Offers <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                    </button>
+                                    <button 
+                                        onClick={handleApply}
+                                        className="w-full sm:w-auto h-12 px-7 rounded-full bg-white text-slate-700 font-medium text-[15px] hover:bg-slate-50 border border-slate-200 transition-all duration-300 flex items-center justify-center gap-2 active:scale-95 group"
+                                    >
+                                        Calculate EMI <Percent size={16} className="text-slate-400 group-hover:text-slate-600 transition-colors" />
+                                    </button>
+                                </div>
+
+                                <div className="flex flex-wrap items-center gap-6 pt-10 mt-6 border-t border-slate-100">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                                            <TrendingDown size={16} strokeWidth={2} />
+                                        </div>
+                                        <div>
+                                            <div className="text-[13px] font-bold text-slate-900 leading-none">{slide.stats}</div>
+                                            <div className="text-[11px] text-slate-500 mt-0.5 font-medium">Best Match Deals</div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <div className="font-bold text-sm">Excellent Rating</div>
-                                        <div className="flex gap-0.5 mt-1 text-amber-400">
-                                            {[1, 2, 3, 4, 5].map(s => <Star key={s} size={12} fill="currentColor" />)}
+                                    <div className="w-px h-8 bg-slate-200 hidden sm:block"></div>
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+                                            <Shield size={16} strokeWidth={2} />
+                                        </div>
+                                        <div>
+                                            <div className="text-[13px] font-bold text-slate-900 leading-none">Zero Hidden Fees</div>
+                                            <div className="text-[11px] text-slate-500 mt-0.5 font-medium">100% Transparent</div>
                                         </div>
                                     </div>
                                 </div>
                             </motion.div>
                         </AnimatePresence>
+                    </div>
 
-                        {/* Slide Indicators */}
-                        <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:-right-4 md:top-1/2 md:-translate-y-1/2 md:bottom-auto flex md:flex-col gap-3">
+                    {/* Right Image Slider UI */}
+                    <div className="relative w-full lg:h-[550px] flex items-center justify-center mt-12 lg:mt-0">
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={`img-${current}`}
+                                initial={{ opacity: 0, scale: 0.98, filter: "blur(5px)" }}
+                                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                                exit={{ opacity: 0, scale: 1.02, filter: "blur(5px)" }}
+                                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                                className="relative z-10 w-full max-w-[500px] aspect-[4/4] lg:aspect-auto lg:h-[90%] rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100/50 bg-slate-100"
+                            >
+                                <Image
+                                    src={slide.image}
+                                    alt={slide.title}
+                                    fill
+                                    className="object-cover object-center transition-transform duration-[10s] hover:scale-105"
+                                    priority
+                                />
+
+                                {/* Subtle Floating Trust Badge Overlay */}
+                                <div className="absolute bottom-6 left-6 bg-white/80 backdrop-blur-xl p-3 pr-5 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] border border-white/50 flex flex-col gap-1.5 z-20">
+                                    <div className="font-bold text-[13px] text-slate-900 leading-tight">Excellent Rating</div>
+                                    <div className="flex gap-0.5 text-blue-500">
+                                        {[1, 2, 3, 4, 5].map(s => <Star key={s} size={12} fill="currentColor" />)}
+                                    </div>
+                                </div>
+
+                            </motion.div>
+                        </AnimatePresence>
+
+                        {/* Minimal Slide Indicators */}
+                        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2">
                             {slides.map((_, index) => (
                                 <button
                                     key={index}
                                     onClick={() => setCurrent(index)}
-                                    className={`w-3 h-3 rounded-full transition-all duration-300 ${index === current
-                                        ? "bg-orange-500 scale-125 border-2 border-white shadow-md ring-1 ring-orange-200"
-                                        : "bg-slate-300 hover:bg-orange-300"
+                                    className={`h-1.5 rounded-full transition-all duration-500 ${index === current
+                                        ? "w-8 bg-blue-600"
+                                        : "w-1.5 bg-slate-300 hover:bg-slate-400"
                                         }`}
                                 />
                             ))}

@@ -72,17 +72,23 @@ export default function FAQSection() {
     const filteredFaqs = faqs.filter((faq) => faq.category === activeCategory);
 
     return (
-        <section className="py-24 bg-gray-50 border-t border-slate-100">
-            <div className="container mx-auto px-6 max-w-7xl">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <section className="py-24 md:py-32 bg-slate-50/50 border-t border-slate-100/50 relative overflow-hidden">
+            {/* Subtle Grid */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
+
+            <div className="container mx-auto px-6 max-w-[1280px] relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
 
                     {/* Left Column: Header & Filters */}
-                    <div className="lg:col-span-4 space-y-8">
+                    <div className="lg:col-span-5 space-y-8">
                         <div>
-                            <h2 className="text-4xl font-bold text-slate-900 mb-6 tracking-tight">
-                                Frequently Asked <span className="text-blue-600">Questions</span>
+                            <span className="inline-flex items-center gap-1.5 text-slate-800 font-semibold tracking-wide uppercase text-[11px] mb-4 bg-slate-100 px-2.5 py-1 rounded-md border border-slate-200">
+                                Support center
+                            </span>
+                            <h2 className="text-4xl md:text-[3rem] font-bold text-slate-900 mb-6 tracking-tight leading-tight">
+                                Frequently Asked <span className="text-slate-400">Questions</span>
                             </h2>
-                            <p className="text-lg text-slate-500 leading-relaxed">
+                            <p className="text-[17px] text-slate-500 leading-relaxed font-medium">
                                 Everything you need to know about our services, loan processes, insurance policies, and billing.
                             </p>
                         </div>
@@ -95,9 +101,9 @@ export default function FAQSection() {
                                         setActiveCategory(category);
                                         setOpenIndex(null);
                                     }}
-                                    className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 border ${activeCategory === category
-                                        ? "bg-slate-900 text-white border-slate-900 shadow-lg shadow-slate-200"
-                                        : "bg-white text-slate-500 border-slate-200 hover:border-slate-400 hover:text-slate-900"
+                                    className={`px-5 py-2 rounded-full text-[13px] font-semibold transition-all duration-300 border ${activeCategory === category
+                                        ? "bg-slate-900 text-white border-slate-900 shadow-[0_4px_14px_rgba(0,0,0,0.1)]"
+                                        : "bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:text-slate-900"
                                         }`}
                                 >
                                     {category}
@@ -107,22 +113,22 @@ export default function FAQSection() {
                     </div>
 
                     {/* Right Column: Accordion Questions */}
-                    <div className="lg:col-span-8 space-y-8">
-                        <div className="space-y-4">
+                    <div className="lg:col-span-7 space-y-8">
+                        <div className="space-y-3">
                             {filteredFaqs.map((faq, index) => (
                                 <div
                                     key={index}
-                                    className="border border-slate-200 rounded-2xl bg-white overflow-hidden transition-all duration-300 hover:border-blue-200 hover:shadow-sm"
+                                    className="border border-slate-200/60 rounded-[16px] bg-white overflow-hidden transition-all duration-300 hover:border-slate-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
                                 >
                                     <button
                                         onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                        className="w-full flex items-center justify-between p-6 text-left group"
+                                        className="w-full flex items-center justify-between p-5 text-left group"
                                     >
-                                        <span className="text-lg font-medium text-slate-900 group-hover:text-blue-600 transition-colors">
+                                        <span className="text-[15px] font-bold text-slate-900 group-hover:text-slate-700 transition-colors pr-8">
                                             {faq.question}
                                         </span>
-                                        <span className={`text-slate-400 group-hover:text-blue-600 transition-all duration-300 ${openIndex === index ? "rotate-45" : ""}`}>
-                                            <Plus size={24} strokeWidth={1.5} />
+                                        <span className={`flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-slate-50 text-slate-400 group-hover:text-slate-900 transition-all duration-300 ${openIndex === index ? "rotate-45 bg-slate-100 text-slate-900" : ""}`}>
+                                            <Plus size={18} strokeWidth={2} />
                                         </span>
                                     </button>
                                     <AnimatePresence>
@@ -133,7 +139,7 @@ export default function FAQSection() {
                                                 exit={{ height: 0, opacity: 0 }}
                                                 transition={{ duration: 0.3 }}
                                             >
-                                                <div className="px-6 pb-6 text-slate-600 leading-relaxed text-base border-t border-slate-100 pt-4">
+                                                <div className="px-5 pb-5 text-slate-500 leading-relaxed text-[15px] border-t border-slate-100 pt-4 font-medium">
                                                     {faq.answer}
                                                 </div>
                                             </motion.div>
@@ -143,19 +149,19 @@ export default function FAQSection() {
                             ))}
                         </div>
 
-                        {/* Contact Support Card */}
-                        <div className="bg-gradient-to-r from-blue-600 to-cyan-500 p-8 rounded-3xl shadow-xl shadow-blue-200 flex flex-col sm:flex-row items-center justify-between gap-6">
+                        {/* Minimal Contact Box */}
+                        <div className="bg-white border border-slate-200/60 p-8 rounded-[20px] shadow-[0_2px_10px_rgba(0,0,0,0.02)] flex flex-col sm:flex-row items-center justify-between gap-6">
                             <div>
-                                <h4 className="text-xl font-bold text-white mb-2">Still have questions?</h4>
-                                <p className="text-blue-50">
-                                    Can't find the answer you're looking for? Please chat to our friendly team.
+                                <h4 className="text-[17px] font-bold text-slate-900 mb-1">Still have questions?</h4>
+                                <p className="text-[14px] text-slate-500 font-medium">
+                                    Can't find the answer you're looking for? Chat with our friendly team.
                                 </p>
                             </div>
                             <Link
                                 href="/contact"
-                                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-xl font-bold transition-all shadow-lg flex items-center gap-2 whitespace-nowrap"
+                                className="h-10 px-6 bg-slate-900 text-white rounded-full text-[14px] font-medium transition-all shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:bg-slate-800 hover:shadow-[0_4px_15px_rgba(0,0,0,0.1)] active:scale-95 flex items-center gap-2 whitespace-nowrap"
                             >
-                                Contact Support <ArrowRight size={18} />
+                                Contact Support <ArrowRight size={14} />
                             </Link>
                         </div>
                     </div>

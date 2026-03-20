@@ -13,13 +13,13 @@ import Image from "next/image";
 
 export default function Footer() {
     return (
-        <footer className="bg-black pt-20 pb-10 border-t border-zinc-900">
-            <div className="container mx-auto px-6 max-w-7xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <footer className="bg-[#0A0A0A] pt-20 pb-10 border-t border-slate-900/50">
+            <div className="container mx-auto px-6 max-w-[1280px]">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-20">
 
                     {/* Brand Column */}
                     <div className="space-y-6">
-                        <Link href="/" className="inline-block">
+                        <Link href="/" className="inline-block transition-opacity hover:opacity-80">
                             <Image
                                 src="/footer.png"
                                 alt="Smart Solutions"
@@ -28,24 +28,24 @@ export default function Footer() {
                                 className="object-contain w-auto h-24 md:h-28"
                             />
                         </Link>
-                        <p className="text-slate-400 leading-relaxed max-w-sm">
+                        <p className="text-slate-500 text-[15px] leading-relaxed max-w-sm pr-4">
                             Your trusted financial partner for loans and insurance. We simplify finance so you can focus on what matters most.
                         </p>
-                        <div className="flex gap-4">
+                        <div className="flex gap-3 pt-2">
                             {[
-                                { icon: Facebook, href: "#", color: "hover:text-blue-500" },
-                                { icon: Twitter, href: "#", color: "hover:text-blue-400" },
-                                { icon: Instagram, href: "https://www.instagram.com/__smartsolutions__/", color: "hover:text-pink-600" },
-                                { icon: Linkedin, href: "#", color: "hover:text-blue-700" }
+                                { icon: Facebook, href: "#" },
+                                { icon: Twitter, href: "#" },
+                                { icon: Instagram, href: "https://www.instagram.com/__smartsolutions__/" },
+                                { icon: Linkedin, href: "#" }
                             ].map((social, idx) => (
                                 <Link
                                     key={idx}
                                     href={social.href}
-                                    className={`w-10 h-10 rounded-full bg-zinc-900 flex items-center justify-center text-slate-400 transition-all hover:bg-white hover:scale-110 ${social.color}`}
+                                    className="w-10 h-10 rounded-full border border-slate-800 bg-slate-900/50 flex items-center justify-center text-slate-400 transition-all duration-300 hover:bg-slate-800 hover:text-white hover:border-slate-700"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    <social.icon size={20} />
+                                    <social.icon size={18} strokeWidth={1.5} />
                                 </Link>
                             ))}
                         </div>
@@ -53,10 +53,10 @@ export default function Footer() {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
-                            <span className="w-8 h-1 bg-cyan-500 rounded-full"></span> Loans
+                        <h3 className="text-slate-100 font-semibold text-[15px] mb-6 tracking-wide">
+                            Loans
                         </h3>
-                        <ul className="space-y-4">
+                        <ul className="space-y-3.5">
                             {[
                                 { name: "Personal Loan", href: "/loan/personal-loan" },
                                 { name: "Business Loan", href: "/loan/business-loan" },
@@ -66,8 +66,8 @@ export default function Footer() {
                                 { name: "Car Loan", href: "/loan/car-loan" }
                             ].map((link) => (
                                 <li key={link.name}>
-                                    <Link href={link.href} className="text-slate-400 hover:text-cyan-400 transition-colors flex items-center gap-2 group">
-                                        <ArrowRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                                    <Link href={link.href} className="text-[15px] text-slate-500 hover:text-white transition-colors flex items-center gap-1.5 group">
+                                        <ArrowRight size={14} className="opacity-0 -ml-4 mr-0.5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-slate-400" />
                                         {link.name}
                                     </Link>
                                 </li>
@@ -77,10 +77,10 @@ export default function Footer() {
 
                     {/* Insurance */}
                     <div>
-                        <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
-                            <span className="w-8 h-1 bg-blue-600 rounded-full"></span> Insurance
+                        <h3 className="text-slate-100 font-semibold text-[15px] mb-6 tracking-wide">
+                            Insurance
                         </h3>
-                        <ul className="space-y-4">
+                        <ul className="space-y-3.5">
                             {[
                                 { name: "Health Insurance", href: "/insurance/health-insurance" },
                                 { name: "Term Life Insurance", href: "/insurance/term-life" },
@@ -90,8 +90,8 @@ export default function Footer() {
                                 { name: "EMI Protector", href: "/insurance/emi-protector" }
                             ].map((link) => (
                                 <li key={link.name}>
-                                    <Link href={link.href} className="text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-2 group">
-                                        <ArrowRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                                    <Link href={link.href} className="text-[15px] text-slate-500 hover:text-white transition-colors flex items-center gap-1.5 group">
+                                        <ArrowRight size={14} className="opacity-0 -ml-4 mr-0.5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-slate-400" />
                                         {link.name}
                                     </Link>
                                 </li>
@@ -101,46 +101,45 @@ export default function Footer() {
 
                     {/* Contact */}
                     <div>
-                        <h3 className="text-white font-bold text-lg mb-6 flex items-center gap-2">
-                            <span className="w-8 h-1 bg-purple-500 rounded-full"></span> Contact Us
+                        <h3 className="text-slate-100 font-semibold text-[15px] mb-6 tracking-wide">
+                            Contact Us
                         </h3>
-                        <ul className="space-y-6">
-                            <li className="flex items-start gap-4 text-slate-400 group">
-                                <div className="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center shrink-0 group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                                    <Mail size={20} />
+                        <ul className="space-y-5">
+                            <li className="flex items-start gap-3.5 text-slate-500 group">
+                                <div className="mt-0.5 text-slate-600 group-hover:text-slate-300 transition-colors">
+                                    <Mail size={18} strokeWidth={1.5} />
                                 </div>
                                 <div>
-                                    <div className="text-xs font-semibold text-slate-500 uppercase mb-1">Email Support</div>
-                                    <a href="mailto:info@ssolutions.in" className="text-white hover:text-cyan-400 transition-colors">info@ssolutions.in</a>
+                                    <a href="mailto:info@ssolutions.in" className="text-[15px] hover:text-white transition-colors">info@ssolutions.in</a>
                                 </div>
                             </li>
-                            <li className="flex items-start gap-4 text-slate-400 group">
-                                <div className="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center shrink-0 group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                                    <Phone size={20} />
+                            <li className="flex items-start gap-3.5 text-slate-500 group">
+                                <div className="mt-0.5 text-slate-600 group-hover:text-slate-300 transition-colors">
+                                    <Phone size={18} strokeWidth={1.5} />
                                 </div>
                                 <div>
-                                    <div className="text-xs font-semibold text-slate-500 uppercase mb-1">Call Us</div>
-                                    <a href="tel:+919870802207" className="text-white hover:text-cyan-400 transition-colors">+91 98708 02207</a>
+                                    <a href="tel:+919870802207" className="text-[15px] hover:text-white transition-colors">+91 98708 02207</a>
                                 </div>
                             </li>
-                            <li className="flex items-start gap-4 text-slate-400 group">
-                                <div className="w-10 h-10 rounded-lg bg-zinc-900 flex items-center justify-center shrink-0 group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                                    <MapPin size={20} />
+                            <li className="flex items-start gap-3.5 text-slate-500 group">
+                                <div className="mt-0.5 text-slate-600 group-hover:text-slate-300 transition-colors shrink-0">
+                                    <MapPin size={18} strokeWidth={1.5} />
                                 </div>
                                 <div>
-                                    <div className="text-xs font-semibold text-slate-500 uppercase mb-1">Visit Us</div>
-                                    <span className="text-white">Hindrajesthan Building, Office No. 236, 238, 240, 2nd Floor, Dadar East, Near Kailas Lasiwala, Opp. Chetan Bar, Dadar East, Mumbai 400014</span>
+                                    <span className="text-[14px] leading-relaxed block">
+                                        Hindrajesthan Building, Office No. 236, 238, 240, 2nd Floor, Dadar East, Near Kailas Lasiwala, Opp. Chetan Bar, Mumbai 400014
+                                    </span>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <div className="border-t border-zinc-900 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-                    <p className="text-slate-500 text-sm">
+                <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p className="text-slate-600 text-[14px]">
                         &copy; {new Date().getFullYear()} Smart Solutions. All rights reserved.
                     </p>
-                    <div className="flex gap-6 text-sm font-medium text-slate-500">
+                    <div className="flex gap-6 text-[14px] text-slate-500">
                         <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
                         <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
                         <Link href="#" className="hover:text-white transition-colors">Cookie Policy</Link>
