@@ -15,9 +15,9 @@ export default function NavbarLogo({ scrolled = false }: NavbarLogoProps) {
                     <Image
                         src="/company-logo.png"
                         alt="Smart Solutions"
-                        width={120}
-                        height={48}
-                        className="object-contain object-center group-hover:scale-[1.02] transition-transform w-auto h-10 md:h-12"
+                        width={180}
+                        height={70}
+                        className="object-contain object-center group-hover:scale-[1.02] transition-transform w-auto h-14 md:h-16"
                         priority
                     />
                 </span>
@@ -25,9 +25,9 @@ export default function NavbarLogo({ scrolled = false }: NavbarLogoProps) {
                 <Image
                     src="/company-logo.png"
                     alt="Smart Solutions"
-                    width={120}
-                    height={48}
-                    className="object-contain object-center group-hover:scale-[1.02] transition-transform w-auto h-12 md:h-14"
+                    width={180}
+                    height={70}
+                    className="object-contain object-center group-hover:scale-[1.02] transition-transform w-auto h-16 md:h-20"
                     priority
                 />
             )}

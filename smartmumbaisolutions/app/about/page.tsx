@@ -51,7 +51,7 @@ const assistantManagers = [
 ];
 
 const stats = [
-    { label: "Years Experience", value: "3+", icon: Award },
+    { label: "Years Experience", value: "7+", icon: Award },
     { label: "Satisfied Clients", value: "10000+", icon: Users },
     { label: "Loans Approved", value: "₹100Cr+", icon: CheckCircle2 },
     { label: "Partner Banks", value: "40+", icon: Handshake },

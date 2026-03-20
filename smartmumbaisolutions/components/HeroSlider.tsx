@@ -110,14 +110,14 @@ export default function HeroSlider() {
                                         onClick={handleApply}
                                         className="w-full sm:w-auto h-12 px-7 rounded-full bg-slate-900 text-white font-medium text-[15px] hover:bg-slate-800 transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_4px_14px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.15)] active:scale-95 group"
                                     >
-                                        Check Your Offers <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                        Apply Now <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                                     </button>
-                                    <button 
-                                        onClick={handleApply}
+                                    <Link
+                                        href="/calculator"
                                         className="w-full sm:w-auto h-12 px-7 rounded-full bg-white text-slate-700 font-medium text-[15px] hover:bg-slate-50 border border-slate-200 transition-all duration-300 flex items-center justify-center gap-2 active:scale-95 group"
                                     >
                                         Calculate EMI <Percent size={16} className="text-slate-400 group-hover:text-slate-600 transition-colors" />
-                                    </button>
+                                    </Link>
                                 </div>
 
                                 <div className="flex flex-wrap items-center gap-6 pt-10 mt-6 border-t border-slate-100">
