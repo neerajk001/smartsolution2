@@ -74,9 +74,9 @@ const ProductCard = ({ product, index, category, onApplyClick }: { product: any,
                             e.stopPropagation();
                             onApplyClick();
                         }}
-                        className="inline-flex items-center gap-1.5 text-slate-900 text-[13px] font-semibold transition-all duration-300 group/btn mt-auto"
+                        className="inline-flex items-center justify-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-[13px] font-semibold transition-all duration-300 group/btn mt-auto px-4 py-2.5 rounded-lg shadow-md shadow-blue-600/25"
                     >
-                        Apply <ArrowUpRight size={14} className="text-slate-400 group-hover/btn:text-slate-900 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 transition-all" />
+                        Apply <ArrowUpRight size={14} className="text-white group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5 transition-all" />
                     </button>
                 </div>
             </div>

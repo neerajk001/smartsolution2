@@ -97,6 +97,9 @@ function mapLoanTypeToSlug(loanType: string): string {
  */
 export async function submitLoanApplication(loanType: string, formData: any): Promise<ApiResponse> {
   try {
+    const annualIncome = parseFloat(formData.annualIncome) || 0;
+    const monthlyIncome = parseFloat(formData.monthlyIncome) || (annualIncome > 0 ? annualIncome / 12 : 0);
+
     // Map form data to API format
     const requestBody: any = {
       loanType: loanType,
@@ -104,16 +107,11 @@ export async function submitLoanApplication(loanType: string, formData: any): Pr
         fullName: formData.fullName,
         email: formData.email || '',
         mobileNumber: formData.mobileNumber,
-        dob: formData.dob,
-        pincode: formData.pincode,
-        city: formData.city,
-        panCard: formData.panCard,
       },
       employmentInfo: {
         employmentType: formData.employmentType,
-        monthlyIncome: parseFloat(formData.monthlyIncome) || 0,
-        employerName: formData.employerName,
-        existingEmi: parseFloat(formData.existingEmi) || 0,
+        monthlyIncome,
+        annualIncome,
       },
     };
 
@@ -206,6 +204,8 @@ export async function submitLoanApplication(loanType: string, formData: any): Pr
  */
 export async function submitInsuranceApplication(insuranceType: string, formData: any): Promise<ApiResponse> {
   try {
+    const annualIncome = parseFloat(formData.annualIncome) || 0;
+
     // Map form data to API format
     const requestBody: any = {
       insuranceType: insuranceType,
@@ -213,8 +213,10 @@ export async function submitInsuranceApplication(insuranceType: string, formData
         fullName: formData.fullName,
         mobileNumber: formData.mobileNumber,
         email: formData.email || '',
-        dob: formData.dob || undefined,
-        age: formData.age ? parseInt(formData.age) : undefined,
+      },
+      employmentInfo: {
+        employmentType: formData.employmentType,
+        annualIncome,
       },
     };
 
