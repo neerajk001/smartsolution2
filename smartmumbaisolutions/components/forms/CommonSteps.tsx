@@ -1,6 +1,6 @@
 "use client";
 
-import { CommonLoanFields } from "@/lib/formTypes";
+import { LegacyCommonLoanFields } from "@/lib/formTypes";
 import {
   validateFullName,
   validateMobileNumber,
@@ -35,7 +35,7 @@ interface StepProps {
 export function PersonalDetailsStep({ formData, setFormData }: StepProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleChange = (field: keyof CommonLoanFields, value: string) => {
+  const handleChange = (field: keyof LegacyCommonLoanFields, value: string) => {
     setFormData({ ...formData, [field]: value });
     // Clear error when user starts typing
     if (errors[field]) {
@@ -43,7 +43,7 @@ export function PersonalDetailsStep({ formData, setFormData }: StepProps) {
     }
   };
 
-  const handleBlur = (field: keyof CommonLoanFields) => {
+  const handleBlur = (field: keyof LegacyCommonLoanFields) => {
     let error = null;
     const value = formData[field];
 
@@ -264,14 +264,14 @@ export function PersonalDetailsStep({ formData, setFormData }: StepProps) {
 export function EmploymentInfoStep({ formData, setFormData }: StepProps) {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleChange = (field: keyof CommonLoanFields, value: string) => {
+  const handleChange = (field: keyof LegacyCommonLoanFields, value: string) => {
     setFormData({ ...formData, [field]: value });
     if (errors[field]) {
       setErrors({ ...errors, [field]: "" });
     }
   };
 
-  const handleBlur = (field: keyof CommonLoanFields) => {
+  const handleBlur = (field: keyof LegacyCommonLoanFields) => {
     let error = null;
     const value = formData[field];
 

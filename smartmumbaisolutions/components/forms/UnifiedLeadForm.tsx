@@ -119,7 +119,7 @@ export default function UnifiedLeadForm({ onSubmit, onClose }: UnifiedLeadFormPr
 
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-slate-700">
-                Employment Type <span className="text-red-500">*</span>
+                Salaried / Self-employed <span className="text-red-500">*</span>
               </label>
               <div className="relative group">
                 <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={18} />

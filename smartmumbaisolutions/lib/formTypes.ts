@@ -1,5 +1,14 @@
-// Common field types for all loan applications
+// Loan form (current UX): keep loan applications to the 4 basic fields.
 export interface CommonLoanFields {
+  fullName: string;
+  mobileNumber: string;
+  employmentType: "salaried" | "self-employed" | "";
+  annualIncome: string;
+}
+
+// Legacy (multi-step) loan fields.
+// Kept only so older multi-step components can still typecheck if referenced.
+export interface LegacyCommonLoanFields {
   // Step 1: Personal Details
   fullName: string;
   mobileNumber: string;
@@ -16,62 +25,13 @@ export interface CommonLoanFields {
   existingEmi: string;
 }
 
-// Personal Loan specific fields
-export interface PersonalLoanFields extends CommonLoanFields {
-  loanAmount: string;
-  tenure: string;
-  loanPurpose: string;
-}
-
-// Business Loan specific fields
-export interface BusinessLoanFields extends CommonLoanFields {
-  businessType: string;
-  turnover: string;
-  yearsInBusiness: string;
-  gstRegistered: "yes" | "no" | "";
-  loanAmount: string;
-  tenure: string;
-  loanPurpose: string;
-}
-
-// Home Loan specific fields
-export interface HomeLoanFields extends CommonLoanFields {
-  propertyCost: string;
-  propertyLoanType: string;
-  propertyCity: string;
-  propertyStatus: "ready" | "construction" | "";
-}
-
-// Loan Against Property specific fields
-export interface LAPFields extends CommonLoanFields {
-  propertyType: string;
-  propertyCost: string;
-  propertyCity: string;
-  occupancyStatus: "self" | "rented" | "vacant" | "";
-  loanAmount: string;
-  tenure: string;
-  loanPurpose: string;
-}
-
-// Car Loan specific fields
-export interface CarLoanFields extends CommonLoanFields {
-  carType: string;
-  carMake: string;
-  carModel: string;
-  carVariant: string;
-  carPrice: string;
-  carYear: string;
-  downPayment: string;
-}
-
-// Education Loan specific fields
-export interface EducationLoanFields extends CommonLoanFields {
-  courseName: string;
-  instituteName: string;
-  courseCountry: string;
-  courseDuration: string;
-  courseFee: string;
-}
+// Loan types: all loan categories currently use the same 4-field lead form.
+export type PersonalLoanFields = CommonLoanFields;
+export type BusinessLoanFields = CommonLoanFields;
+export type HomeLoanFields = CommonLoanFields;
+export type LAPFields = CommonLoanFields;
+export type CarLoanFields = CommonLoanFields;
+export type EducationLoanFields = CommonLoanFields;
 
 // Insurance Types
 export interface HealthInsuranceFields {
