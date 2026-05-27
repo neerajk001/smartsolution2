@@ -97,79 +97,13 @@ function mapLoanTypeToSlug(loanType: string): string {
  */
 export async function submitLoanApplication(loanType: string, formData: any): Promise<ApiResponse> {
   try {
-    const annualIncome = parseFloat(formData.annualIncome) || 0;
-    const monthlyIncome = parseFloat(formData.monthlyIncome) || (annualIncome > 0 ? annualIncome / 12 : 0);
-
-    // Map form data to API format
-    const requestBody: any = {
+    const requestBody = {
       loanType: loanType,
-      personalInfo: {
-        fullName: formData.fullName,
-        email: formData.email || '',
-        mobileNumber: formData.mobileNumber,
-      },
-      employmentInfo: {
-        employmentType: formData.employmentType,
-        monthlyIncome,
-        annualIncome,
-      },
+      fullName: formData.fullName,
+      mobileNumber: formData.mobileNumber,
+      employmentType: formData.employmentType,
+      annualIncome: formData.annualIncome ? parseFloat(formData.annualIncome) : 0,
     };
-
-    // Add Business Details (for business-loan)
-    if (loanType === 'business-loan' && formData.businessType) {
-      requestBody.businessDetails = {
-        businessType: formData.businessType,
-        turnover: parseFloat(formData.turnover) || 0,
-        yearsInBusiness: parseInt(formData.yearsInBusiness) || 0,
-        gstRegistered: formData.gstRegistered === 'yes',
-      };
-    }
-
-    // Add Property Details (for home-loan, loan-against-property)
-    if ((loanType === 'home-loan' || loanType === 'mortgage-loan') && formData.propertyCost) {
-      requestBody.propertyDetails = {
-        propertyCost: parseFloat(formData.propertyCost) || 0,
-        currentMarketValue: parseFloat(formData.propertyCost) || 0, // Using same value
-        propertyLoanType: formData.propertyLoanType || 'purchase',
-        propertyType: formData.propertyType || 'apartment',
-        propertyCity: formData.propertyCity || formData.city,
-        propertyStatus: formData.propertyStatus === 'ready' ? 'ready-to-move' : 'under-construction',
-        occupancyStatus: formData.occupancyStatus === 'self' ? 'self-occupied' : formData.occupancyStatus || 'self-occupied',
-      };
-    }
-
-    // Add Loan Requirement (for personal, business, LAP)
-    if (formData.loanAmount) {
-      requestBody.loanRequirement = {
-        loanAmount: parseFloat(formData.loanAmount) || 0,
-        tenure: parseInt(formData.tenure) || 0,
-        loanPurpose: formData.loanPurpose || 'General purpose',
-      };
-    }
-
-    // Add Car Details (for car-loan)
-    if (loanType === 'car-loan' && formData.carMake) {
-      requestBody.carDetails = {
-        carType: formData.carType,
-        carMake: formData.carMake,
-        carModel: formData.carModel,
-        carVariant: formData.carVariant,
-        carPrice: parseFloat(formData.carPrice) || 0,
-        carYear: formData.carYear,
-        downPayment: parseFloat(formData.downPayment) || 0,
-      };
-    }
-
-    // Add Education Details (for education-loan)
-    if (loanType === 'education-loan' && formData.courseName) {
-      requestBody.educationDetails = {
-        courseName: formData.courseName,
-        instituteName: formData.instituteName,
-        courseCountry: formData.courseCountry,
-        courseDuration: formData.courseDuration,
-        courseFee: parseFloat(formData.courseFee) || 0,
-      };
-    }
 
     const response = await fetch(`${API_BASE_URL}/applications/loan`, {
       method: 'POST',
@@ -204,44 +138,13 @@ export async function submitLoanApplication(loanType: string, formData: any): Pr
  */
 export async function submitInsuranceApplication(insuranceType: string, formData: any): Promise<ApiResponse> {
   try {
-    const annualIncome = parseFloat(formData.annualIncome) || 0;
-
-    // Map form data to API format
-    const requestBody: any = {
+    const requestBody = {
       insuranceType: insuranceType,
-      basicInfo: {
-        fullName: formData.fullName,
-        mobileNumber: formData.mobileNumber,
-        email: formData.email || '',
-      },
-      employmentInfo: {
-        employmentType: formData.employmentType,
-        annualIncome,
-      },
+      fullName: formData.fullName,
+      mobileNumber: formData.mobileNumber,
+      employmentType: formData.employmentType,
+      annualIncome: formData.annualIncome ? parseFloat(formData.annualIncome) : 0,
     };
-
-    // Add Sum Insured (for health-insurance, term-life)
-    if ((insuranceType === 'health-insurance' || insuranceType === 'term-life') && formData.sumInsured) {
-      requestBody.sumInsured = parseSumInsured(formData.sumInsured);
-    }
-
-    // Add Vehicle Info (for car-insurance, bike-insurance)
-    if ((insuranceType === 'car-insurance' || insuranceType === 'bike-insurance') && formData.vehicleNumber) {
-      requestBody.vehicleInfo = {
-        pincode: formData.pincode,
-        vehicleNumber: formData.vehicleNumber,
-        policyTerm: parseInt(formData.policyTerm) || 1,
-      };
-    }
-
-    // Add Loan Info (for loan-protector, emi-protector)
-    if ((insuranceType === 'loan-protector' || insuranceType === 'emi-protector') && formData.loanType) {
-      requestBody.loanInfo = {
-        loanType: mapLoanTypeToSlug(formData.loanType),
-        loanAmount: parseFloat(formData.loanAmount) || 0,
-        tenure: parseInt(formData.tenure) || 0,
-      };
-    }
 
     const response = await fetch(`${API_BASE_URL}/applications/insurance`, {
       method: 'POST',
